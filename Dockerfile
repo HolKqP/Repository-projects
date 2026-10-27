@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     libsqlite3-dev \
+    sqlite3 \
     zip \
     unzip \
     git \
@@ -14,7 +15,6 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     dos2unix \
     && docker-php-ext-install pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd zip
-
 # تفعيل موديل Rewrite لـ Apache
 RUN a2enmod rewrite
 
