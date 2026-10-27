@@ -1,28 +1,17 @@
 #!/bin/bash
 
-# مسح الرابط القديم إن وجد وإنشاؤه من جديد بصلاحيات كاملة
+# التأكد من وجود ملف قاعدة البيانات وصلاحياته
+mkdir -p /var/www/html/database
+touch /var/www/html/database/database.sqlite
+chmod 777 /var/www/html/database/database.sqlite
+
+# تجديد الرابط الرمزي للصور
 rm -rf /var/www/html/public/storage
 php artisan storage:link
+chmod -R 777 /var/www/html/storage /var/www/html/public/storage 2>/dev/null || true
 
-# ضبط الصلاحيات بعد إنشاء الرابط الرمزي
-chmod -R 777 /var/www/html/storage
-chmod -R 777 /var/www/html/public/storage 2>/dev/null || true
-
-# تشغيل المايجريشن
+# تشغيل المايجريشن لإنشاء جميع الجداول
 php artisan migrate --force
 
-# تنظيف أوامر MySQL غير المتوافقة مع SQLite ثم الاستيراد
-if [ -f "/var/www/html/codequest.sql" ]; then
-    echo "Converting and importing SQL data into SQLite..."
-    sed -i 's/ENGINE=InnoDB//g' /var/www/html/codequest.sql
-    sed -i 's/COLLATE=[^ ;]*//g' /var/www/html/codequest.sql
-    sed -i 's/CHARACTER SET [^ ;]*//g' /var/www/html/codequest.sql
-    sed -i 's/DEFAULT CHARSET=[^ ;]*//g' /var/www/html/codequest.sql
-    sed -i 's/AUTO_INCREMENT=[0-9]*//g' /var/www/html/codequest.sql
-
-    # محاولة استيراد أسطر INSERT فقط التي تحتوي على البيانات
-    grep -i "INSERT INTO" /var/www/html/codequest.sql | sqlite3 /var/www/html/database/database.sqlite 2>/dev/null || true
-fi
-
-# تشغيل خادم Apache
+# تشغيل Apache
 exec apache2-foreground
