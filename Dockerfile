@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libzip-dev \
+    dos2unix \
     && docker-php-ext-install pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd zip
 
 # تفعيل موديل Rewrite لـ Apache
@@ -31,16 +32,17 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 COPY . .
 
-# إنشاء ملف sqlite فارغ لتفادي أخطاء الاتصال أثناء التهيئة
+# إنشاء ملف sqlite فارغ لتفادي الأخطاء
 RUN mkdir -p database && touch database/database.sqlite
 
-# تثبيت التبعيات مع تعطيل تشغيل السكريبتات التلقائية لتفادي الاتصال بالقاعدة أثناء البناء
+# تثبيت التبعيات
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts --ignore-platform-reqs
 
-# ضبط الصلاحيات لمجلدات التخزين وقاعدة البيانات
+# ضبط الصلاحيات لمجلدات التخزين وقاعدة البيانات وسكريبت التشغيل
+RUN dos2unix entrypoint.sh && chmod +x entrypoint.sh
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
 
 EXPOSE 80
 
-CMD ["apache2-foreground"]
+CMD ["/var/www/html/entrypoint.sh"]
