@@ -52,5 +52,9 @@ class AppServiceProvider extends ServiceProvider
         // if (request()->header('X-Forwarded-Proto') === 'https') {
         //     URL::forceScheme('https');
         // }
+        // فرض HTTPS لجميع روابط asset() و route() على السيرفر
+    if (config('app.env') === 'production' || env('APP_ENV') === 'production') {
+        URL::forceScheme('https');
+    }
     }
 }

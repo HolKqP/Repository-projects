@@ -1,20 +1,14 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
+return new class extends Migration {
+    public function up() {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('provider_name')->nullable();
@@ -27,16 +21,11 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('title')->nullable();
-            $table->boolean('email_notifications')->default(true);
-            $table->boolean('is_active')->default(true);
+            $table->boolean('email_notifications');
+            $table->boolean('is_active')->default(1);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
+    public function down() {
         Schema::dropIfExists('users');
     }
 };

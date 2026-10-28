@@ -1,11 +1,12 @@
+SET FOREIGN_KEY_CHECKS = 0;
 -- phpMyAdmin SQL Dump
 -- version 6.0.0-dev+20260814.7ff5dd5b7e
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 17, 2026 at 04:34 AM
+-- Generation Time: Oct 27, 2026 at 11:28 AM
 -- Server version: 8.4.6
--- PHP Version: 8.3.33
+-- PHP Version: 8.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,21 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `codequest`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `answers`
---
-CREATE TABLE `answers` (
-  `answer_id` bigint UNSIGNED NOT NULL,
-  `answer_text` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `question_id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED DEFAULT NULL,
-  `is_accepted` tinyint(1) NOT NULL DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `answers`
@@ -53,8 +39,6 @@ INSERT INTO `answers` (`answer_id`, `answer_text`, `question_id`, `user_id`, `is
 (63, '<p>اتنملارنغؤت<img src=\"http://localhost/codequest/public/storage/editor/5QNE87qCrLXJxZQaBWl1h2Zk7g0cRK7FzrJGufOB.png\"></p>', 31, 12, 0, '2026-08-21 17:40:12', '2026-08-24 03:44:35'),
 (80, '<?xml encoding=\"utf-8\" ?><p>&#1588;&#1587;&#1610;</p>\n', 23, 13, 1, '2026-09-01 07:44:46', '2026-09-02 00:28:37'),
 (81, '<?xml encoding=\"utf-8\" ?><p>&#1588;&#1587;&#1610;&#1588;&#1587;&#1610;</p>\n', 23, 13, 0, '2026-09-01 07:45:02', '2026-09-01 07:45:02'),
-(82, '<?xml encoding=\"utf-8\" ?><p>asdf</p>\n', 36, 12, 0, '2026-09-01 08:30:50', '2026-09-01 08:30:50'),
-(83, '<p>0asdas</p>', 36, 12, 0, '2026-09-02 05:27:30', '2026-09-10 09:18:26'),
 (84, '<?xml encoding=\"utf-8\" ?><p>&#1588;&#1587;&#1610;</p>\n', 36, 12, 0, '2026-09-02 05:32:43', '2026-09-02 05:32:43'),
 (85, '<?xml encoding=\"utf-8\" ?><p>&#1588;&#1587;&#1610;</p>\n', 36, 12, 0, '2026-09-02 05:39:52', '2026-09-02 05:39:52'),
 (86, '<?xml encoding=\"utf-8\" ?><p>asdas</p>\n', 36, 12, 0, '2026-09-02 05:44:30', '2026-09-02 05:44:30'),
@@ -62,18 +46,8 @@ INSERT INTO `answers` (`answer_id`, `answer_text`, `question_id`, `user_id`, `is
 (88, '<?xml encoding=\"utf-8\" ?><p>&#1605;&#1605;</p>\n', 36, 12, 0, '2026-09-02 06:00:46', '2026-09-02 06:00:46'),
 (89, '<?xml encoding=\"utf-8\" ?><p>&#1588;&#1587;&#1610;</p>\n', 36, 12, 0, '2026-09-02 06:10:17', '2026-09-02 06:10:17'),
 (95, '<p>sdfsadf</p>', 36, 12, 0, '2026-09-10 08:36:28', '2026-09-10 08:36:28'),
-(96, '<p><br /></p>', 36, 12, 0, '2026-09-10 08:36:42', '2026-09-10 08:36:42');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `cache`
---
-CREATE TABLE `cache` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expiration` bigint NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(96, '<p><br /></p>', 36, 12, 1, '2026-09-10 08:36:42', '2026-09-25 16:57:06'),
+(99, '<h2>حل هذه المشكلة في بيئة <strong>Laragon</strong> مع <strong>Laravel</strong> غالباً ما يعود إلى أحد الأسباب التالية، يمكنك اتباع الخطوات بالترتيب لحلها:</h2><ol><li data-list=\"ordered\"><span></span> التأكد من حالة خدمة MySQL والمنفذ (Port)</li></ol><p>افتح واجهة <strong>Laragon</strong> وتأكد من أن خدمة MySQL تعمل ولونها أخضر بجانب زر \"Stop\".</p><p>انتبه لرقم المنفذ بجانب MySQL؛ في حال كان لديك برنامج آخر مثل (XAMPP أو MySQL Workbench) قد يتغير المنفذ تلقائياً من <code>3306</code> إلى <code>3307</code> أو غيره لتفادي التعارض.</p><p>إذا كان المنفذ مختلفاً، قم بتعديله في ملف <code>.env</code>:</p><div class=\"ql-code-block-container\"><div class=\"ql-code-block\">DB_PORT=3307 # أو الرقم الظاهر في واجهة Laragon</div></div><p>2. التبديل بين <code>127.0.0.1</code> و <code>localhost</code></p><p>في بعض أنظمة التشغيل، يفشل الاتصال عبر الـ IP المحلي أو يواجه مشاكل في التوجيه عبر IPv6، جرب تعديل السطر التالي في <code>.env</code>:</p><div class=\"ql-code-block-container\"><div class=\"ql-code-block ql-align-right\">DB_HOST=localhost</div></div><p>أو العكس (إذا كان <code>localhost</code>، اجعله <code>127.0.0.1</code>).</p><h3>3. التحقق من وجود قاعدة البيانات</h3><ol><li data-list=\"bullet\"><span></span>افتح أداة إدارة القواعد المرفقة مع لاراغون بالضغط على <strong>Database</strong> (تفتح افتراضياً برنامج HeidiSQL).</li><li data-list=\"bullet\"><span></span>سجل الدخول:</li><li data-list=\"bullet\"><span></span><strong>المستخدم:</strong> <code>root</code></li><li data-list=\"bullet\"><span></span><strong>كلمة المرور:</strong> (اتركها فارغة)</li><li data-list=\"bullet\"><span></span><strong>المنفذ:</strong> <code>3306</code></li><li data-list=\"bullet\"><span></span>تأكد من أن اسم قاعدة البيانات المكتوب في خانة <code>DB_DATABASE</code> تم إنشاؤه بالفعل، لأن لارافيل لن ينشئه تلقائياً إذا لم يكن موجوداً.</li></ol><h3>4. التحقق من تفعيل إضافة PDO في PHP</h3><ol><li data-list=\"bullet\"><span></span>اضغط بزر الفأرة الأيمن في أي مكان داخل واجهة <strong>Laragon</strong>.</li><li data-list=\"bullet\"><span></span>اذهب إلى: <strong>PHP</strong> &gt; <strong>Extensions</strong>.</li><li data-list=\"bullet\"><span></span>تأكد من وجود علامة صح بجانب:</li><li data-list=\"bullet\"><span></span><code>pdo_mysql</code></li><li data-list=\"bullet\"><span></span><code>mysqli</code></li></ol><p><br /></p>', 38, 12, 0, '2026-10-18 00:21:41', '2026-10-18 00:21:41');
 
 --
 -- Dumping data for table `cache`
@@ -82,57 +56,18 @@ CREATE TABLE `cache` (
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
 ('codequest-cache-viewed_question_32_by_ip_::1', 'b:1;', 1787556368);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `cache_locks`
---
-CREATE TABLE `cache_locks` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expiration` bigint NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `categories`
---
-CREATE TABLE `categories` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Software & Web Development', 'كل ما يتعلق بتطوير البرمجيات وتطبيقات الويب والمواقع.', '2026-08-10 11:27:36', '2026-08-10 11:27:36'),
-(2, 'Mobile App Development', 'تطوير تطبيقات الهواتف الذكية للأنظمة المختلفة مثل Android و iOS.', '2026-08-10 11:27:36', '2026-08-10 11:27:36'),
+(1, 'Software & Web Development', 'كل ما يتعلق بتطوير البرمجيات وتطبيقات الويب والمواقع.', '2026-08-10 11:27:36', '2026-09-18 09:28:47'),
+(2, 'Mobile App Development', 'تطوير تطبيقات الهواتف الذكية للأنظمة المختلفة مثل Android و iOS.', '2026-08-10 11:27:36', '2026-09-18 07:35:26'),
 (4, 'DevOps & Cloud Systems', 'إدارة الحوسبة السحابية، الخوادم، ودورات نشر البرمجيات.', '2026-08-10 11:27:36', '2026-08-10 11:27:36'),
 (5, 'Cybersecurity & Networking', 'الأمن السيبراني، حماية الأنظمة، وإدارة شبكات الحاسوب.', '2026-08-10 11:27:36', '2026-08-10 11:27:36'),
 (6, 'CodeQuest Community & Lounge', 'مساحة النقاشات العامة، الفعاليات، ومجتمع منصة CodeQuest.', '2026-08-10 11:27:36', '2026-08-10 11:27:36'),
-(44, 'Data Science', 'علم وتحليل البيانات', '2026-09-17 01:30:55', '2026-09-17 01:30:55'),
-(45, 'Data Science', 'علم وتحليل البيانات', '2026-09-17 01:30:56', '2026-09-17 01:30:56'),
-(46, 'Data Science', 'علم وتحليل البيانات', '2026-09-17 01:30:58', '2026-09-17 01:30:58');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `comments`
---
-CREATE TABLE `comments` (
-  `comment_id` bigint UNSIGNED NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint UNSIGNED DEFAULT NULL,
-  `commentable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `commentable_id` bigint UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(53, 'علم وتحليل البيانات', 'علم وتحليل البيانات', '2026-09-17 05:23:12', '2026-09-17 08:46:59'),
+(54, 'Data Science', 'علم وتحليل البيانات', '2026-09-18 04:04:22', '2026-09-18 04:04:22');
 
 --
 -- Dumping data for table `comments`
@@ -156,9 +91,7 @@ INSERT INTO `comments` (`comment_id`, `content`, `user_id`, `commentable_type`, 
 (15, 'asdasd', 13, 'App\\Models\\Answer', 65, '2026-08-31 05:48:11'),
 (16, 'شسي', 12, 'App\\Models\\Answer', 72, '2026-08-31 08:33:24'),
 (17, 'سس', 12, 'App\\Models\\Answer', 67, '2026-08-31 08:34:48'),
-(18, 'zxczxczxc', 12, 'App\\Models\\Question', 36, '2026-08-31 08:47:54'),
 (19, 'بب', 12, 'App\\Models\\Answer', 80, '2026-09-02 00:28:04'),
-(20, 'ابا', 12, 'App\\Models\\Question', 36, '2026-09-02 08:03:49'),
 (21, 'شمبانزي', 12, 'App\\Models\\Question', 36, '2026-09-02 08:06:32'),
 (22, 'h', 12, 'App\\Models\\Question', 36, '2026-09-02 08:39:08'),
 (23, 'سسس', 13, 'App\\Models\\Answer', 75, '2026-09-04 03:39:41'),
@@ -171,100 +104,15 @@ INSERT INTO `comments` (`comment_id`, `content`, `user_id`, `commentable_type`, 
 (30, 'hasdasd', 12, 'App\\Models\\Answer', 85, '2026-09-05 06:49:47'),
 (32, 'ghghj', 12, 'App\\Models\\Answer', 96, '2026-09-10 08:36:56'),
 (33, 'fghfdg', 12, 'App\\Models\\Answer', 66, '2026-09-10 19:50:02'),
-(34, 'fgh', 12, 'App\\Models\\Question', 33, '2026-09-10 19:52:16');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `failed_jobs`
---
-CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `jobs`
---
-CREATE TABLE `jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `attempts` smallint UNSIGNED NOT NULL,
-  `reserved_at` int UNSIGNED DEFAULT NULL,
-  `available_at` int UNSIGNED NOT NULL,
-  `created_at` int UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `job_batches`
---
-CREATE TABLE `job_batches` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `total_jobs` int NOT NULL,
-  `pending_jobs` int NOT NULL,
-  `failed_jobs` int NOT NULL,
-  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `options` mediumtext COLLATE utf8mb4_unicode_ci,
-  `cancelled_at` int DEFAULT NULL,
-  `created_at` int NOT NULL,
-  `finished_at` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `migrations`
---
-CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(34, 'fgh', 12, 'App\\Models\\Question', 33, '2026-09-10 19:52:16'),
+(37, 'شسي', 12, 'App\\Models\\Answer', 84, '2026-09-30 04:36:24'),
+(38, 'حدد المشكلة', 12, 'App\\Models\\Question', 38, '2026-09-30 07:54:08');
 
 --
 -- Dumping data for table `migrations`
 --
 
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '0001_01_01_000000_create_users_table', 1),
-(2, '0001_01_01_000001_create_cache_table', 1),
-(3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2026_07_31_210110_categories', 1),
-(5, '2026_07_31_210429_questions', 1),
-(6, '2026_07_31_210521_answers', 1),
-(7, '2026_07_31_210636_question_tag', 1),
-(8, '2026_07_31_210726_notifications', 1),
-(9, '2026_07_31_210758_votes', 1),
-(10, '2026_07_31_210832_comments', 1),
-(11, '2026_07_31_210858_reports', 1),
-(12, '2026_08_08_193638_add_social_fields_to_users_table', 2);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `notifications`
---
-CREATE TABLE `notifications` (
-  `notification_id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
-  `type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'info',
-  `message` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notifiable_id` bigint UNSIGNED DEFAULT NULL,
-  `notifiable_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_read` tinyint(1) NOT NULL DEFAULT '0',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `notifications`
@@ -470,72 +318,49 @@ INSERT INTO `notifications` (`notification_id`, `user_id`, `type`, `message`, `n
 (233, 13, 'answer', 'قام عمر العمري بالإجابة على سؤالك.', 37, 'App\\Models\\Question', 0, '2026-09-11 04:14:54'),
 (234, 13, 'answer', 'قام عمر العمري بالإجابة على سؤالك.', 37, 'App\\Models\\Question', 0, '2026-09-11 04:16:56'),
 (235, 12, 'comment', ' قام المشرف holk alOmari بتعديل تعليقك.', NULL, 'App\\Models\\Comment', 0, '2026-09-11 05:08:23'),
-(236, 12, 'update_question', ' قام المشرف holk alOmari بتحديث سؤالك.', 33, 'App\\Models\\Question', 0, '2026-09-11 05:16:22'),
-(237, 12, 'update_question', ' قام المشرف holk alOmari بحذف سؤالك.', 30, 'App\\Models\\Question', 0, '2026-09-11 05:17:34');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `password_reset_tokens`
---
-CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(236, 12, 'update_question', ' قام المشرف holk alOmari بتحديث سؤالك.', 33, 'App\\Models\\Question', 1, '2026-09-11 05:16:22'),
+(237, 12, 'update_question', ' قام المشرف holk alOmari بحذف سؤالك.', 30, 'App\\Models\\Question', 1, '2026-09-11 05:17:34'),
+(238, 12, 'answer', 'قام المشرف CodeQuest بتعديل إجابتك على السؤال: \"sad\".', 82, 'App\\Models\\Answer', 1, '2026-09-25 16:40:50'),
+(239, 12, 'comment', 'قام CodeQuest بالتعليق على إجابتك.', 82, 'App\\Models\\Answer', 1, '2026-09-25 16:41:03'),
+(240, 12, 'answer_deleted', 'قام المشرف CodeQuest بحذف إجابتك على السؤال: \"sad\".', 83, 'App\\Models\\Answer', 1, '2026-09-25 16:42:55'),
+(241, 12, 'answer_status', 'تم قبول إجابتك على السؤال: \"sad\".', 96, 'App\\Models\\Answer', 1, '2026-09-25 16:57:06'),
+(242, 12, 'comment', ' قام المشرف holk alOmari بحذف  تعليقك.', NULL, 'App\\Models\\Comment', 0, '2026-09-25 16:57:23'),
+(243, 12, 'comment', ' قام المشرف holk alOmari بحذف  تعليقك.', NULL, 'App\\Models\\Comment', 1, '2026-09-25 16:57:29'),
+(244, 12, 'vote', 'قام holk alOmari بالإعجاب بـ سؤالك.', 38, 'App\\Models\\Question', 0, '2026-10-18 00:23:08'),
+(245, 12, 'vote', 'قام holk alOmari بعدم الإعجاب بـ إجابتك.', 99, 'App\\Models\\Answer', 0, '2026-10-18 00:23:10'),
+(246, 12, 'vote', 'قام holk alOmari بالإعجاب بـ إجابتك.', 57, 'App\\Models\\Answer', 0, '2026-10-18 00:27:11'),
+(247, 12, 'vote', 'قام holk alOmari بعدم الإعجاب بـ سؤالك.', 29, 'App\\Models\\Question', 0, '2026-10-18 00:27:13'),
+(248, 12, 'vote', 'قام holk alOmari بعدم الإعجاب بـ سؤالك.', 38, 'App\\Models\\Question', 0, '2026-10-25 17:25:25'),
+(249, 12, 'vote', 'قام holk alOmari بالإعجاب بـ سؤالك.', 38, 'App\\Models\\Question', 0, '2026-10-25 17:25:46'),
+(250, 12, 'vote', 'قام holk alOmari بعدم الإعجاب بـ سؤالك.', 38, 'App\\Models\\Question', 0, '2026-10-25 17:25:55');
 
 --
 -- Dumping data for table `password_reset_tokens`
 --
 
 INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
+('holk.max.qp.12345@gmail.com', '$2y$12$c1UR3UgOPxgdiLeNv/XDn.Ieyl9qdlwaO91sxdfv6ymbroBqtOKOW', '2026-09-29 05:58:56'),
 ('omar.alOmari.12345.o.i@gmail.com', '$2y$12$pFCHlYS67nL022xTZe03ZeCHWheG.bEAHWeALHiuZe9oJEkejvTTm', '2026-09-06 07:17:11');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `questions`
---
-CREATE TABLE `questions` (
-  `question_id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint UNSIGNED DEFAULT NULL,
-  `category_id` bigint UNSIGNED NOT NULL,
-  `views_count` int NOT NULL DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `is_answered` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `questions`
 --
 
-INSERT INTO `questions` (`question_id`, `title`, `description`, `user_id`, `category_id`, `views_count`, `created_at`, `updated_at`, `is_answered`) VALUES
-(21, 'sdtrnudbrtbsedt', '<p>sayhbwrtu<img src=\"http://localhost/codequest/public/storage/editor/JDbGqmSD9Bpi1XUULoGYmJxwgqsjvtiU6isRX2zM.png\"></p>', 12, 1, 1, '2026-08-10 09:15:18', '2026-09-05 05:42:04', 0),
-(22, 'sdtrnudbrtbsedt', '<p>sayhbwrtu<img src=\"http://localhost/codequest/public/storage/editor/JDbGqmSD9Bpi1XUULoGYmJxwgqsjvtiU6isRX2zM.png\"></p>', 12, 1, 0, '2026-08-10 09:29:38', '2026-08-10 09:29:38', 0),
-(23, 'sdtrnudbrtbsedt', '<p>sayhbwrtu<img src=\"http://localhost/codequest/public/storage/editor/JDbGqmSD9Bpi1XUULoGYmJxwgqsjvtiU6isRX2zM.png\"></p>', 12, 1, 15, '2026-08-10 09:31:01', '2026-09-04 07:09:54', 0),
-(24, 'How to fix \"Target class [PostController] does not exist\" in Laravel 10?', '<h2>I\'m migrating my project to Laravel 10 and facing an issue with my web routes. When I try to access the route <code>http://localhost/posts</code>, I get the following error:</h2><div class=\"ql-code-block-container\" spellcheck=\"false\"><div class=\"ql-code-block\">Illuminate\\Contracts\\Container\\BindingResolutionException: Target class [PostController] does not exist.</div><div class=\"ql-code-block\"><br></div></div><h2>Here is my <code>routes/web.php</code> configuration:</h2><div class=\"ql-code-block-container\" spellcheck=\"false\"><div class=\"ql-code-block\">PHP</div><div class=\"ql-code-block\"><br></div><div class=\"ql-code-block\" data-language=\"true\">Route::get(\'/posts\', \'PostController@index\');</div></div><p>My controller is located at <code>app/Http/Controllers/PostController.php</code> and the namespace inside the file is:</p><div class=\"ql-code-block-container\" spellcheck=\"false\"><div class=\"ql-code-block\">PHP</div><div class=\"ql-code-block\">namespace App\\Http\\Controllers;</div></div><h2><strong>What I\'ve tried:</strong></h2><h2>Ran <code>php artisan route:clear</code> and <code>php artisan config:clear</code>.</h2><h2>Checked for typos in the controller name and namespace.</h2><h2>How can I properly register this route in Laravel 10 without getting this error?</h2><p><br></p>', 12, 1, 6, '2026-08-14 15:58:28', '2026-08-28 03:18:06', 0),
-(25, 'كيف يمكن إيقاف التكرار في استعلامات Eager Loading في لارافل؟', 'أواجه مشكلة N+1 Query أثناء جلب الأسئلة مع الإجابات وربطها بالمستخدمين، ما هي الطريقة الصحيحة لمنعها؟', 12, 1, 18, '2026-08-18 10:18:44', '2026-08-26 19:39:03', 1),
-(26, 'ما الفرق بين استخدام let و var في لغة JavaScript؟', 'أريد فهم الفرق من ناحية Scope والـ Hoisting وتأثيرهما على الأداء أثناء كتابة السكربتات.', 12, 1, 13, '2026-08-18 10:18:44', '2026-08-31 08:52:02', 1),
-(27, 'ما هي خطوات إعداد الحماية باستخدام CSRF Token في Laravel؟', 'عند إرسال نموذج HTML يظهر لي خطأ 419 Page Expired، كيف يمكن حل هذه المشكلة بالكامل؟', 12, 5, 23, '2026-08-18 10:18:44', '2026-08-25 06:00:44', 1),
-(28, 'كيف يمكن تحسين استعلامات قواعد البيانات في MySQL باستخدام Indexes؟', 'لدي جدول يحتوي على آلاف السجلات والاستعلام أصبح بطيئاً جداً، كيف أختار الأعمدة المناسبة للـ Indexing؟', 12, 1, 30, '2026-08-18 10:18:44', '2026-08-18 10:18:44', 1),
-(29, 'ما هي أفضل الممارسات لتصميم RESTful APIs باستخدام Laravel؟', 'أقوم بإنشاء API لتطبيق جوال وأريد معرفة الطريقة القياسية لتنسيق الـ Responses والـ Status Codes.', 12, 2, 12, '2026-08-18 10:18:44', '2026-08-18 10:18:44', 1),
-(31, 'how to print in py', '<?xml encoding=\"utf-8\" ?><p><br></p><div class=\"ql-code-block-container\" spellcheck=\"false\"><div class=\"ql-code-block\">print(\'php welcome domain)</div></div><p><br></p><p><img src=\"http://localhost/codequest/public/storage/editor/QXYIeIvogw64MHQKJgvJUZBTAD5UDK9HlDN75325.png\"></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p>sadwaew</p><p>\r\n</p><p>ss</p><p>\r\n</p><p>\r\n</p><p>\r\n</p><p>\r\n</p><p>\r\n</p><p>\r\n</p><p>\r\n</p><p>\r\n</p><p>\r\n</p><p>\r\n</p>\n', 12, 1, 40, '2026-08-21 11:40:59', '2026-09-11 04:11:57', 0),
-(34, 'حل مشكلة اتصال قاعدة البيانات', '<?xml encoding=\"utf-8\" ?><p><br></p><p><br></p><p>1.&#1581;&#1604; &#1605;&#1588;&#1603;&#1604;&#1577; </p><div class=\"ql-code-block-container\" spellcheck=\"false\"><div class=\"ql-code-block\">            // &#1580;&#1604;&#1576; &#1589;&#1575;&#1581;&#1576; &#1575;&#1604;&#1605;&#1581;&#1578;&#1608;&#1609;</div><div class=\"ql-code-block\">            $author = $item-&gt;user ?? User::find($item-&gt;user_id);</div></div><p>\r\n</p><p>\r\n</p>\n', 12, 1, 10, '2026-08-27 08:17:23', '2026-09-11 05:16:06', 0),
-(36, 'sad', '<?xml encoding=\"utf-8\" ?><p>asd</p>\n', 13, 2, 45, '2026-08-31 05:55:23', '2026-09-11 05:06:44', 0),
-(37, 'س', '<p>\r\n</p>', 13, 1, 9, '2026-09-08 04:30:52', '2026-09-15 05:19:43', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `question_tag`
---
-CREATE TABLE `question_tag` (
-  `question_id` bigint UNSIGNED NOT NULL,
-  `tag_id` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `questions` (`question_id`, `title`, `description`, `user_id`, `category_id`, `views_count`, `created_at`, `updated_at`, `is_answered`, `is_faq`) VALUES
+(21, 'sdtrnudbrtbsedt', '<p>sayhbwrtu<img src=\"http://localhost/codequest/public/storage/editor/JDbGqmSD9Bpi1XUULoGYmJxwgqsjvtiU6isRX2zM.png\"></p>', 12, 1, 1, '2026-08-10 09:15:18', '2026-09-05 05:42:04', 0, 0),
+(22, 'sdtrnudbrtbsedt', '<p>sayhbwrtu<img src=\"http://localhost/codequest/public/storage/editor/JDbGqmSD9Bpi1XUULoGYmJxwgqsjvtiU6isRX2zM.png\"></p>', 12, 1, 0, '2026-08-10 09:29:38', '2026-08-10 09:29:38', 0, 0),
+(23, 'sdtrnudbrtbsedt', '<p>sayhbwrtu<img src=\"http://localhost/codequest/public/storage/editor/JDbGqmSD9Bpi1XUULoGYmJxwgqsjvtiU6isRX2zM.png\"></p>', 12, 1, 15, '2026-08-10 09:31:01', '2026-09-04 07:09:54', 0, 0),
+(24, 'How to fix \"Target class [PostController] does not exist\" in Laravel 10?', '<h2>I\'m migrating my project to Laravel 10 and facing an issue with my web routes. When I try to access the route <code>http://localhost/posts</code>, I get the following error:</h2><div class=\"ql-code-block-container\" spellcheck=\"false\"><div class=\"ql-code-block\">Illuminate\\Contracts\\Container\\BindingResolutionException: Target class [PostController] does not exist.</div><div class=\"ql-code-block\"><br></div></div><h2>Here is my <code>routes/web.php</code> configuration:</h2><div class=\"ql-code-block-container\" spellcheck=\"false\"><div class=\"ql-code-block\">PHP</div><div class=\"ql-code-block\"><br></div><div class=\"ql-code-block\" data-language=\"true\">Route::get(\'/posts\', \'PostController@index\');</div></div><p>My controller is located at <code>app/Http/Controllers/PostController.php</code> and the namespace inside the file is:</p><div class=\"ql-code-block-container\" spellcheck=\"false\"><div class=\"ql-code-block\">PHP</div><div class=\"ql-code-block\">namespace App\\Http\\Controllers;</div></div><h2><strong>What I\'ve tried:</strong></h2><h2>Ran <code>php artisan route:clear</code> and <code>php artisan config:clear</code>.</h2><h2>Checked for typos in the controller name and namespace.</h2><h2>How can I properly register this route in Laravel 10 without getting this error?</h2><p><br></p>', 12, 1, 7, '2026-08-14 15:58:28', '2026-09-25 16:48:20', 0, 0),
+(25, 'كيف يمكن إيقاف التكرار في استعلامات Eager Loading في لارافل؟', 'أواجه مشكلة N+1 Query أثناء جلب الأسئلة مع الإجابات وربطها بالمستخدمين، ما هي الطريقة الصحيحة لمنعها؟', 12, 1, 19, '2026-08-18 10:18:44', '2026-10-18 00:26:32', 1, 0),
+(26, 'ما الفرق بين استخدام let و var في لغة JavaScript؟', 'أريد فهم الفرق من ناحية Scope والـ Hoisting وتأثيرهما على الأداء أثناء كتابة السكربتات.', 12, 1, 15, '2026-08-18 10:18:44', '2026-10-18 00:26:42', 1, 0),
+(27, 'ما هي خطوات إعداد الحماية باستخدام CSRF Token في Laravel؟', 'عند إرسال نموذج HTML يظهر لي خطأ 419 Page Expired، كيف يمكن حل هذه المشكلة بالكامل؟', 12, 5, 23, '2026-08-18 10:18:44', '2026-08-25 06:00:44', 1, 0),
+(28, 'كيف يمكن تحسين استعلامات قواعد البيانات في MySQL باستخدام Indexes؟', 'لدي جدول يحتوي على آلاف السجلات والاستعلام أصبح بطيئاً جداً، كيف أختار الأعمدة المناسبة للـ Indexing؟', 12, 1, 31, '2026-08-18 10:18:44', '2026-10-01 06:04:04', 1, 0),
+(29, 'ما هي أفضل الممارسات لتصميم RESTful APIs باستخدام Laravel؟', 'أقوم بإنشاء API لتطبيق جوال وأريد معرفة الطريقة القياسية لتنسيق الـ Responses والـ Status Codes.', 12, 2, 13, '2026-08-18 10:18:44', '2026-10-18 00:27:05', 1, 0),
+(31, 'how to print in py', '<?xml encoding=\"utf-8\" ?><p><br></p><div class=\"ql-code-block-container\" spellcheck=\"false\"><div class=\"ql-code-block\">print(\'php welcome domain)</div></div><p><br></p><p><img src=\"http://localhost/codequest/public/storage/editor/QXYIeIvogw64MHQKJgvJUZBTAD5UDK9HlDN75325.png\"></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p>sadwaew</p><p>\r\n</p><p>ss</p><p>\r\n</p><p>\r\n</p><p>\r\n</p><p>\r\n</p><p>\r\n</p><p>\r\n</p><p>\r\n</p><p>\r\n</p><p>\r\n</p><p>\r\n</p>\n', 12, 1, 44, '2026-08-21 11:40:59', '2026-10-25 17:23:45', 0, 0),
+(34, 'حل مشكلة اتصال قاعدة البيانات', '<?xml encoding=\"utf-8\" ?><p><br></p><p><br></p><p>1.&#1581;&#1604; &#1605;&#1588;&#1603;&#1604;&#1577; </p><div class=\"ql-code-block-container\" spellcheck=\"false\"><div class=\"ql-code-block\">            // &#1580;&#1604;&#1576; &#1589;&#1575;&#1581;&#1576; &#1575;&#1604;&#1605;&#1581;&#1578;&#1608;&#1609;</div><div class=\"ql-code-block\">            $author = $item-&gt;user ?? User::find($item-&gt;user_id);</div></div><p>\r\n</p><p>\r\n</p>\n', 12, 1, 14, '2026-08-27 08:17:23', '2026-10-25 17:23:30', 0, 0),
+(36, 'sad', '<p><br /></p><p>asd</p><p>\r\n</p>', 13, 4, 67, '2026-08-31 05:55:23', '2026-10-01 05:56:42', 0, 0),
+(37, 'س', '<p>\r\n</p>', 13, 1, 15, '2026-09-08 04:30:52', '2026-09-30 04:09:58', 0, 0),
+(38, 'مشكلة عدم القدرة على الاتصال بقاعدة البيانات MySQL في سيرفر Laragon مع مشروع Laravel', '<h2>السلام عليكم ورحمة الله،</h2><h2>أواجه مشكلة في مشروعي المبني على إطار العمل Laravel عند محاولة الاتصال بقاعدة البيانات عبر بيئة التطوير المحلية <strong>Laragon</strong>، حيث تظهر لي رسالة خطأ تفيد بفشل الاتصال (Database Connection Error / Connection Refused).</h2><h2><strong>الخطوات التي قمت بها:</strong></h2><ol><li data-list=\"ordered\"><span></span>التأكد من تشغيل خادم MySQL داخل برنامج Laragon والضغط على \"Start All\".</li><li data-list=\"ordered\"><span></span>محاولة ضبط إعدادات ملف البيئة <code>.env</code> كالتالي:</li></ol><div class=\"ql-code-block-container\"><div class=\"ql-code-block\">DB_CONNECTION=mysql</div><div class=\"ql-code-block\">DB_HOST=127.0.0.1</div><div class=\"ql-code-block\">DB_PORT=3306</div><div class=\"ql-code-block\">DB_DATABASE=اسم_قاعدة_البيانات</div><div class=\"ql-code-block\">DB_USERNAME=root</div><div class=\"ql-code-block ql-align-right\">DB_PASSWORD=</div></div><ol><li data-list=\"ordered\"><span></span>تشغيل أمر مسح التخزين المؤقت للإعدادات: <code>php artisan config:clear</code>.</li></ol><h2><strong>المشكلة:</strong> على الرغم من ذلك، لا يزال المشروع غير قادر على الوصول إلى قاعدة البيانات.</h2><h2>هل المشكلة تتعلق برقم المنفذ (Port) أو بصلاحيات المستخدم <code>root</code>، أم هناك إعداد إضافي يجب تفعيله في Laragon؟</h2><h2>أرجو المساعدة في توضيح سبب المشكلة وكيفية حلها. وشكرًا لكم.</h2>', 12, 1, 5, '2026-09-30 07:53:28', '2026-10-25 17:23:56', 0, 0);
 
 --
 -- Dumping data for table `question_tag`
@@ -546,11 +371,13 @@ INSERT INTO `question_tag` (`question_id`, `tag_id`) VALUES
 (25, 1),
 (31, 1),
 (34, 1),
+(38, 1),
 (24, 2),
 (25, 2),
 (27, 2),
 (29, 2),
 (34, 2),
+(38, 2),
 (23, 3),
 (24, 3),
 (26, 3),
@@ -560,6 +387,7 @@ INSERT INTO `question_tag` (`question_id`, `tag_id`) VALUES
 (28, 4),
 (34, 4),
 (37, 4),
+(38, 4),
 (27, 5),
 (23, 7),
 (24, 7),
@@ -568,69 +396,41 @@ INSERT INTO `question_tag` (`question_id`, `tag_id`) VALUES
 (23, 9),
 (28, 9),
 (36, 9),
+(38, 9),
 (27, 10);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reports`
---
-CREATE TABLE `reports` (
-  `report_id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
-  `reportable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `reportable_id` bigint UNSIGNED NOT NULL,
-  `reason` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `reports`
 --
 
 INSERT INTO `reports` (`report_id`, `user_id`, `reportable_type`, `reportable_id`, `reason`, `status`, `created_at`, `updated_at`) VALUES
-(1, 12, 'App\\Models\\Question', 36, 'spam - التفاصيل: ffb', 'pending', '2026-09-01 08:42:18', '2026-09-01 08:42:18'),
+(1, 12, 'App\\Models\\Question', 36, 'spam - التفاصيل: ffb', 'resolved', '2026-09-01 08:42:18', '2026-09-20 17:51:59'),
 (2, 12, 'App\\Models\\Question', 36, 'spam - التفاصيل: asd', 'pending', '2026-09-03 05:19:05', '2026-09-03 05:19:05'),
 (3, 13, 'App\\Models\\Question', 32, 'abuse - التفاصيل: س', 'pending', '2026-09-04 03:07:51', '2026-09-04 03:07:51'),
 (4, 13, 'App\\Models\\Question', 32, 'spam - التفاصيل: سس', 'pending', '2026-09-04 03:11:20', '2026-09-04 03:11:20'),
 (5, 13, 'App\\Models\\Question', 32, 'spam - التفاصيل: س', 'pending', '2026-09-04 03:19:39', '2026-09-04 03:19:39'),
-(6, 13, 'App\\Models\\Question', 32, 'abuse - التفاصيل: سي', 'pending', '2026-09-04 04:04:10', '2026-09-04 04:04:10');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sessions`
---
-CREATE TABLE `sessions` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint UNSIGNED DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_activity` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(6, 13, 'App\\Models\\Question', 32, 'abuse - التفاصيل: سي', 'resolved', '2026-09-04 04:04:10', '2026-09-20 17:51:19'),
+(7, 12, 'App\\Models\\Question', 38, 'other - التفاصيل: غير دقيق', 'pending', '2026-09-30 07:54:25', '2026-09-30 07:54:25');
 
 --
 -- Dumping data for table `sessions`
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('BOLyPy5KdyxfT3gtspLOWeV3scb2WgPnqkE1KCZb', 12, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0', 'eyJfdG9rZW4iOiJHd1NYSDJNTlZ2TE9ZUUZ5OUVQOG8xMnFLNWI4MlhRNHpyVmVCcnhXIiwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEyLCJfcHJldmlvdXMiOnsidXJsIjoiaHR0cDpcL1wvbG9jYWxob3N0XC9jb2RlcXVlc3RcL3B1YmxpY1wvZGFzaGJvYXJkXC9tb2RlcmF0b3JcL2NhdGVnb3JpZXMiLCJyb3V0ZSI6ImNhdGVnb3JpZXMuaW5kZXgifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119fQ==', 1789619589);
-
--- --------------------------------------------------------
+('60Web5InLljIBSCUyIGPK4CMR3QDcguyRKP0RSFb', 13, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0', 'eyJfdG9rZW4iOiIzeTBrVXRaQzBENmpOV1lXV296cTZUQUUyd3VDcUNnVGtZbzA5TnEzIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdFwvY29kZXF1ZXN0XC9wdWJsaWNcL2Rhc2hib2FyZFwvbW9kZXJhdG9yXC91c2VycyIsInJvdXRlIjoidXNlcnMuaW5kZXgifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI6MTN9', 1792959966),
+('sOV94bcanJ9Ihp4gpvFHDaViLIBTKC1nKnGecRiD', 13, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0', 'eyJfdG9rZW4iOiJrOG05bk1FM3Blb3JkV0w3QkNQV1VTZm5pd3RHRVVqcGtGdTVyZkdHIiwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJfcHJldmlvdXMiOnsidXJsIjoiaHR0cDpcL1wvbG9jYWxob3N0XC9jb2RlcXVlc3RcL3B1YmxpY1wvcXVlc3Rpb25zXC8yOSIsInJvdXRlIjoicXVlc3Rpb25zLnNob3cifSwibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiOjEzfQ==', 1792294033),
+('ZsGXTRQscUr2CjTKLMiksPPIVCb9SoUFfHMOMtJU', 13, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0', 'eyJfdG9rZW4iOiJDdUFnSnJ4MGMwQXdtUGtFWHZ1UUVvMHVKTkFJTGdVOXlRaGY0RmtkIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdFwvY29kZXF1ZXN0XC9wdWJsaWMiLCJyb3V0ZSI6ImhvbWUifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI6MTN9', 1793095551);
 
 --
--- Table structure for table `tags`
+-- Dumping data for table `settings`
 --
-CREATE TABLE `tags` (
-  `tag_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `settings` (`id`, `key`, `value`, `created_at`, `updated_at`) VALUES
+(1, 'site_name', 'CodeQuest', '2026-09-20 09:22:51', '2026-09-29 05:36:22'),
+(2, 'support_email', 'codequest123321@gmail.com', '2026-09-20 09:22:51', '2026-09-25 16:24:49'),
+(3, 'maintenance_mode', '0', '2026-09-20 09:22:51', '2026-09-25 17:00:08'),
+(4, 'n8n_webhook_url', 'http://localhost:5678/webhook/1b49b54c-e8db-4acc-a4c3-d4d228df3eeb', '2026-09-20 11:57:38', '2026-09-20 16:48:08'),
+(5, 'system_prompt', 'You are a helpful assisأنت مساعد برمجي ذكي لمنصة CodeQuest.\r\nأجب على أسئلة المستخدم وأخطاء الكود بأسلوب محادثة طبيعي ومرتب باللغة العربية.\r\n\r\nشروط التنسيق:\r\n- يمنع منعاً باتاً إرجاع ردود بصيغة JSON.\r\n- اكتب الشرح أولاً بأسلوب واضح وبسيط.\r\n- أدرج الأكواد البرمجية المصححة دائماً داخل بلوك كود منسق (Code Block) مع تحديد اللغة، مثل:\r\n```php\r\n// الكود هناtant', '2026-09-20 11:57:38', '2026-09-20 16:27:38');
 
 --
 -- Dumping data for table `tags`
@@ -648,67 +448,30 @@ INSERT INTO `tags` (`tag_id`, `name`, `description`, `created_at`, `updated_at`)
 (9, 'Database', 'كل ما يتعلق بتصميم واستعلامات وتحسين قواعد البيانات.', '2026-08-10 11:18:47', '2026-08-10 11:18:47'),
 (10, 'Security', 'المواضيع المتعلقة بأمن المعلومات وحماية التطبيقات من الثغرات.', '2026-08-10 11:18:47', '2026-08-10 11:18:47');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `provider_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `provider_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
-  `reputation_points` int NOT NULL DEFAULT '0',
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `about_me` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email_notifications` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `provider_name`, `provider_id`, `role`, `reputation_points`, `avatar`, `about_me`, `location`, `remember_token`, `created_at`, `updated_at`, `title`, `email_notifications`) VALUES
-(1, 'Test User', 'test@example.com', '2026-08-03 09:31:24', '$2y$12$.t0ts/pS2gZFMIVhdYZdieFj3yDTaNyml5K0UDIa9XV4yqlgKCs.S', NULL, NULL, 'admin', 100, 'avatars/Ufuoj8YEh5IoHvb4q7l8UnRZPEi5hq4E4KcRIS1E.png', 'انا انسان طبيعي\r\nانا انسان طبيعي\r\nانا انسان طبيعي\r\nانا انسان طبيعيانا انسان طبيعي\r\nانا انسان طبيعيانا انسان طبيعي\r\nانا انسان طبيعيانا انسان طبيعيانا انسان طبيعيانا انسان طبيعي\r\nانا انسان طبيعيانا انسان طبيعيانا انسان طبيعي\r\nانا انسان طبيعي', 'عدن\\كريتر', 'ncBXcDEMSDMh5NlY3yf0t30GWfNnUWcvDGuJdt9mGTGawF3AWDAMCOojIQY2', '2026-08-03 09:31:25', '2026-08-06 08:31:00', 'Full stack', 0),
-(2, 'Prof. Verna Runolfsdottir', 'lvandervort@example.net', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'nEB4QUmzTt', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0),
-(3, 'Anya Williamson', 'nabshire@example.com', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'HZIZ1FzJ73', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0),
-(4, 'omar laravel', 'kellie87@example.com', '2026-08-03 09:31:25', '$2y$12$S1a5I/P8/2FX5qOW257e6elw0BIpD8uXhVSw7/dgrkOuGRZRZ1t/i', NULL, NULL, 'user', 0, 'avatars/zNKe5wTv9wGZ96G4SucqDg8TzswIuO8NDFChAAl4.png', 'انا انسان طبيعي', 'عدن\\كريتر', 'zeFbK1FjMqEQgdMutxdCKDR9pgpQGKmD9SWXSV5uSeTCyESWOtonyiU40z2A', '2026-08-03 09:31:25', '2026-08-03 12:04:04', 'Full Stack Developer', 0),
-(5, 'Ocie Langworth', 'kenna01@example.net', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, '8yHtvbixAB', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0),
-(6, 'Johnny Ziemann', 'dpadberg@example.org', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'oCuvHdBLvS', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0),
-(7, 'Mr. Efren Hartmann V', 'arlene.kassulke@example.net', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'bWlR86Wi3l', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0),
-(8, 'General Wilkinson DVM', 'shanny.herman@example.com', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'YweiuztFsx', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0),
-(9, 'Polly Strosin', 'earline.friesen@example.com', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'jixbZXpyTb', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0),
-(10, 'Anita Kilback PhD', 'ddicki@example.org', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'UYm8QLxKuM', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0),
-(11, 'Alessia Brekke MD', 'weimann.bette@example.org', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'w6sp7WFZQr', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0),
-(12, 'عمر العمري', 'omar.alOmari.12345.o.i@gmail.com', NULL, '$2y$12$N7uHAOMm6QRNuVQQlPm25uAJbnCYYtD1Pz2WgU92vwBfJrzoMzuyO', 'google', '109841296692409475127', 'admin', 30, 'avatars/kXwtVqS516klaYjj0RCLkQKdOa5sZdan3JutrKUD.png', '&lt;?xml encoding=\"utf-8\" ?&gt;&lt;?xml encoding=\"utf-8\" ?&gt;<p>.1 <br /><br />صاحب المشروع \r\n.2 \r\n.3</p>\r\n', 'عدن\\كريتر', 'O5JJW59Fl86tzVUIvMJWXMVmpaZy5K1X21JgoK7odWOanALlRLUXzuJmwVEm', '2026-08-07 16:50:34', '2026-09-07 17:12:06', 'المشرف العام', 0),
-(13, 'holk alOmari', 'holk.max.qp.12345@gmail.com', NULL, '$2y$12$hCgTGhG8kV9t03Ji2h08M.DnaSaCwIzXQ7UmPA5KOlzzXc8JtB.EG', 'google', '117106200649845564649', 'admin', 670, NULL, '&lt;?xml encoding=\"utf-8\" ?&gt;<p>المبرمج الاسطو<br />رة</p>\r\n', NULL, 'viRqlwOBt40LNyk5fArVRcAvcxkM9TgVWv0lpxVFgUWCHeztv8gkbLfhD1eX', '2026-08-08 17:38:01', '2026-09-10 19:52:44', NULL, 1),
-(14, 'Mosa gg', 'mosa.gg.123445@gmail.com', NULL, NULL, 'google', '112836436395188666420', 'user', 0, NULL, NULL, NULL, 's3Z7rmYNqN9sRpmW3TY5uX3WAytncOJ1dbMr8tGn4UKPga5BXXbWRsBHEzNG', '2026-08-08 17:48:36', '2026-08-08 17:48:36', NULL, 0),
-(15, 'omar alomari', 'omaqwe@gmail.com', NULL, '$2y$12$jw9xn0kGoxAGnh/28UhJgOIKZGS7t/hIZjGfcN1ZhN3T.p1MMWvLi', NULL, NULL, 'user', 0, NULL, NULL, NULL, NULL, '2026-08-26 17:17:15', '2026-08-26 17:17:15', NULL, 0),
-(16, 'oamrqwe', 'asd@gmail.com', NULL, '$2y$12$.ezTX1E.e00NNRz7haiE0OwzDc1ulbhMD2iQvzsYA39Y/vHADsTa2', NULL, NULL, 'user', 0, NULL, NULL, NULL, NULL, '2026-08-28 04:18:26', '2026-08-28 04:18:26', NULL, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `votes`
---
-CREATE TABLE `votes` (
-  `vote_id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
-  `votable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `votable_id` bigint UNSIGNED NOT NULL,
-  `vote_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `provider_name`, `provider_id`, `role`, `reputation_points`, `avatar`, `about_me`, `location`, `remember_token`, `created_at`, `updated_at`, `title`, `email_notifications`, `is_active`) VALUES
+(1, 'Test User', 'test@example.com', '2026-08-03 09:31:24', '$2y$12$.t0ts/pS2gZFMIVhdYZdieFj3yDTaNyml5K0UDIa9XV4yqlgKCs.S', NULL, NULL, 'admin', 100, 'avatars/Ufuoj8YEh5IoHvb4q7l8UnRZPEi5hq4E4KcRIS1E.png', 'انا انسان طبيعي\r\nانا انسان طبيعي\r\nانا انسان طبيعي\r\nانا انسان طبيعيانا انسان طبيعي\r\nانا انسان طبيعيانا انسان طبيعي\r\nانا انسان طبيعيانا انسان طبيعيانا انسان طبيعيانا انسان طبيعي\r\nانا انسان طبيعيانا انسان طبيعيانا انسان طبيعي\r\nانا انسان طبيعي', 'عدن\\كريتر', '5cuUgY9xOY357I8MSJQpxqtQmhSIDZe8NLTiFjzjnR1HCZ4a6PXTHNTVbr6B', '2026-08-03 09:31:25', '2026-09-19 16:06:06', 'Full stack', 0, 1),
+(2, 'Prof. Verna Runolfsdottir', 'lvandervort@example.net', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'nEB4QUmzTt', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0, 1),
+(3, 'Anya Williamson', 'nabshire@example.com', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'HZIZ1FzJ73', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0, 1),
+(4, 'omar laravel', 'kellie87@example.com', '2026-08-03 09:31:25', '$2y$12$S1a5I/P8/2FX5qOW257e6elw0BIpD8uXhVSw7/dgrkOuGRZRZ1t/i', NULL, NULL, 'user', 0, 'avatars/zNKe5wTv9wGZ96G4SucqDg8TzswIuO8NDFChAAl4.png', 'انا انسان طبيعي', 'عدن\\كريتر', 'zeFbK1FjMqEQgdMutxdCKDR9pgpQGKmD9SWXSV5uSeTCyESWOtonyiU40z2A', '2026-08-03 09:31:25', '2026-08-03 12:04:04', 'Full Stack Developer', 0, 1),
+(5, 'Ocie Langworth', 'kenna01@example.net', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, '8yHtvbixAB', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0, 1),
+(6, 'Johnny Ziemann', 'dpadberg@example.org', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'oCuvHdBLvS', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0, 1),
+(7, 'Mr. Efren Hartmann V', 'arlene.kassulke@example.net', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'bWlR86Wi3l', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0, 1),
+(8, 'General Wilkinson DVM', 'shanny.herman@example.com', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'YweiuztFsx', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0, 1),
+(9, 'Polly Strosin', 'earline.friesen@example.com', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'jixbZXpyTb', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0, 1),
+(10, 'Anita Kilback PhD', 'ddicki@example.org', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'UYm8QLxKuM', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0, 1),
+(11, 'Alessia Brekke MD', 'weimann.bette@example.org', '2026-08-03 09:31:25', '$2y$12$sIVc7lozOxqwuIT4.uh.1uYgeON8pKnhK70GSNo5ps06OGdXNLsE2', NULL, NULL, 'user', 0, NULL, NULL, NULL, 'w6sp7WFZQr', '2026-08-03 09:31:25', '2026-08-03 09:31:25', NULL, 0, 1),
+(12, 'عمر العمري', 'omar.alOmari.12345.o.i@gmail.com', NULL, '$2y$12$N7uHAOMm6QRNuVQQlPm25uAJbnCYYtD1Pz2WgU92vwBfJrzoMzuyO', 'google', '109841296692409475127', 'admin', 45, 'avatars/kXwtVqS516klaYjj0RCLkQKdOa5sZdan3JutrKUD.png', '&lt;?xml encoding=\"utf-8\" ?&gt;&lt;?xml encoding=\"utf-8\" ?&gt;<p>.1 <br /><br />صاحب المشروع \r\n.2 \r\n.3</p>\r\n', 'عدن\\كريتر', 'XJVsHvv1gVgBYkBQmYrJtUrK4NGFlzpxLOJoGZbthwZ4lIZI4xQjKCkf6Eji', '2026-08-07 16:50:34', '2026-10-25 17:26:02', 'المشرف العام', 0, 1),
+(13, 'holk alOmari', 'holk.max.qp.12345@gmail.com', NULL, '$2y$12$hCgTGhG8kV9t03Ji2h08M.DnaSaCwIzXQ7UmPA5KOlzzXc8JtB.EG', 'google', '117106200649845564649', 'admin', 670, NULL, '&lt;?xml encoding=\"utf-8\" ?&gt;<p>المبرمج الاسطو<br />رة</p>\r\n', NULL, 'tWIitZq7RKc4gd7bsrdLqfRr6c1yHlyc0dGafbRIlOsOsaWbQMIwsQLhpaZO', '2026-08-08 17:38:01', '2026-09-21 13:41:17', NULL, 1, 1),
+(14, 'Mosa gg', 'mosa.gg.123445@gmail.com', NULL, NULL, 'google', '112836436395188666420', 'user', 0, NULL, NULL, NULL, 's3Z7rmYNqN9sRpmW3TY5uX3WAytncOJ1dbMr8tGn4UKPga5BXXbWRsBHEzNG', '2026-08-08 17:48:36', '2026-08-08 17:48:36', NULL, 0, 1),
+(15, 'omar alomari', 'omaqwe@gmail.com', NULL, '$2y$12$jw9xn0kGoxAGnh/28UhJgOIKZGS7t/hIZjGfcN1ZhN3T.p1MMWvLi', NULL, NULL, 'user', 0, NULL, NULL, NULL, NULL, '2026-08-26 17:17:15', '2026-09-21 13:41:22', NULL, 0, 1),
+(16, 'oamrqwe', 'asd@gmail.com', NULL, '$2y$12$.ezTX1E.e00NNRz7haiE0OwzDc1ulbhMD2iQvzsYA39Y/vHADsTa2', NULL, NULL, 'user', 0, NULL, NULL, NULL, NULL, '2026-08-28 04:18:26', '2026-08-28 04:18:26', NULL, 0, 1),
+(17, 'omar alomari', 'asdasd@asd.com', '2026-09-21 15:27:27', '$2y$12$1fRK71c2AB1rvzLVmVdh5.J.PAykUpAuU60tf1zRMQ5vCW1ohjPI.', NULL, NULL, 'user', 0, NULL, NULL, NULL, NULL, '2026-09-21 15:23:56', '2026-09-21 15:27:27', NULL, 1, 1),
+(18, 'عمر العمري', 'admin@com', NULL, '$2y$12$Nsc8XEdALA9Tu/Tq.psKK.71rk813oTLgvYEw8XRhqyZqz53fz7wG', NULL, NULL, 'user', 0, NULL, NULL, NULL, NULL, '2026-09-21 15:35:26', '2026-09-21 15:35:26', NULL, 1, 1),
+(19, 'CodeQuest', 'codequest123321@gmail.com', NULL, NULL, 'google', '100913031559450948165', 'admin', 0, NULL, NULL, NULL, 'XwPTU8U6xCBXig3QyVPSE9yhyz2wXjKV2uVQVkEsRwASu0WlRzPM58e1NfYx', '2026-09-25 16:23:26', '2026-09-25 16:23:26', NULL, 1, 1);
 
 --
 -- Dumping data for table `votes`
@@ -734,266 +497,14 @@ INSERT INTO `votes` (`vote_id`, `user_id`, `votable_type`, `votable_id`, `vote_t
 (52, 13, 'App\\Models\\Answer', 88, 'up', '2026-09-05 05:46:18', '2026-09-05 05:46:18'),
 (53, 13, 'App\\Models\\Answer', 87, 'up', '2026-09-05 05:46:20', '2026-09-05 05:46:28'),
 (54, 12, 'App\\Models\\Answer', 73, 'up', '2026-09-10 04:51:44', '2026-09-10 04:51:44'),
-(55, 12, 'App\\Models\\Answer', 70, 'up', '2026-09-10 05:04:02', '2026-09-10 05:04:02');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `answers`
---
-ALTER TABLE `answers`
-  ADD PRIMARY KEY (`answer_id`),
-  ADD KEY `answers_question_id_foreign` (`question_id`),
-  ADD KEY `answers_user_id_foreign` (`user_id`);
-
---
--- Indexes for table `cache`
---
-ALTER TABLE `cache`
-  ADD PRIMARY KEY (`key`),
-  ADD KEY `cache_expiration_index` (`expiration`);
-
---
--- Indexes for table `cache_locks`
---
-ALTER TABLE `cache_locks`
-  ADD PRIMARY KEY (`key`),
-  ADD KEY `cache_locks_expiration_index` (`expiration`);
-
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`comment_id`),
-  ADD KEY `comments_user_id_foreign` (`user_id`),
-  ADD KEY `comments_commentable_type_commentable_id_index` (`commentable_type`,`commentable_id`);
-
---
--- Indexes for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`),
-  ADD KEY `failed_jobs_connection_queue_failed_at_index` (`connection`,`queue`,`failed_at`);
-
---
--- Indexes for table `jobs`
---
-ALTER TABLE `jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `jobs_queue_index` (`queue`);
-
---
--- Indexes for table `job_batches`
---
-ALTER TABLE `job_batches`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `notifications`
---
-ALTER TABLE `notifications`
-  ADD PRIMARY KEY (`notification_id`),
-  ADD KEY `notifications_user_id_foreign` (`user_id`);
-
---
--- Indexes for table `password_reset_tokens`
---
-ALTER TABLE `password_reset_tokens`
-  ADD PRIMARY KEY (`email`);
-
---
--- Indexes for table `questions`
---
-ALTER TABLE `questions`
-  ADD PRIMARY KEY (`question_id`),
-  ADD KEY `questions_user_id_foreign` (`user_id`),
-  ADD KEY `questions_category_id_foreign` (`category_id`);
-
---
--- Indexes for table `question_tag`
---
-ALTER TABLE `question_tag`
-  ADD PRIMARY KEY (`question_id`,`tag_id`),
-  ADD KEY `question_tag_tag_id_foreign` (`tag_id`);
-
---
--- Indexes for table `reports`
---
-ALTER TABLE `reports`
-  ADD PRIMARY KEY (`report_id`),
-  ADD KEY `reports_user_id_foreign` (`user_id`),
-  ADD KEY `reports_reportable_type_reportable_id_index` (`reportable_type`,`reportable_id`);
-
---
--- Indexes for table `sessions`
---
-ALTER TABLE `sessions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `sessions_user_id_index` (`user_id`),
-  ADD KEY `sessions_last_activity_index` (`last_activity`);
-
---
--- Indexes for table `tags`
---
-ALTER TABLE `tags`
-  ADD PRIMARY KEY (`tag_id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
-
---
--- Indexes for table `votes`
---
-ALTER TABLE `votes`
-  ADD PRIMARY KEY (`vote_id`),
-  ADD KEY `votes_user_id_foreign` (`user_id`),
-  ADD KEY `votes_votable_type_votable_id_index` (`votable_type`,`votable_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `answers`
---
-ALTER TABLE `answers`
-  MODIFY `answer_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
-
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
-
---
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `comment_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
---
--- AUTO_INCREMENT for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `jobs`
---
-ALTER TABLE `jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `notifications`
---
-ALTER TABLE `notifications`
-  MODIFY `notification_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=238;
-
---
--- AUTO_INCREMENT for table `questions`
---
-ALTER TABLE `questions`
-  MODIFY `question_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
-
---
--- AUTO_INCREMENT for table `reports`
---
-ALTER TABLE `reports`
-  MODIFY `report_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `tags`
---
-ALTER TABLE `tags`
-  MODIFY `tag_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `votes`
---
-ALTER TABLE `votes`
-  MODIFY `vote_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `answers`
---
-ALTER TABLE `answers`
-  ADD CONSTRAINT `answers_question_id_foreign` FOREIGN KEY (`question_id`) REFERENCES `questions` (`question_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `answers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
-
---
--- Constraints for table `comments`
---
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
-
---
--- Constraints for table `notifications`
---
-ALTER TABLE `notifications`
-  ADD CONSTRAINT `notifications_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `questions`
---
-ALTER TABLE `questions`
-  ADD CONSTRAINT `questions_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT,
-  ADD CONSTRAINT `questions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
-
---
--- Constraints for table `question_tag`
---
-ALTER TABLE `question_tag`
-  ADD CONSTRAINT `question_tag_question_id_foreign` FOREIGN KEY (`question_id`) REFERENCES `questions` (`question_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `question_tag_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`tag_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `reports`
---
-ALTER TABLE `reports`
-  ADD CONSTRAINT `reports_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `votes`
---
-ALTER TABLE `votes`
-  ADD CONSTRAINT `votes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+(55, 12, 'App\\Models\\Answer', 70, 'up', '2026-09-10 05:04:02', '2026-09-10 05:04:02'),
+(68, 13, 'App\\Models\\Answer', 99, 'down', '2026-10-18 00:23:10', '2026-10-18 00:23:10'),
+(69, 13, 'App\\Models\\Answer', 57, 'up', '2026-10-18 00:27:11', '2026-10-18 00:27:11'),
+(70, 13, 'App\\Models\\Question', 29, 'down', '2026-10-18 00:27:13', '2026-10-18 00:27:13');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+SET FOREIGN_KEY_CHECKS = 1;
