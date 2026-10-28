@@ -33,8 +33,8 @@ return Application::configure(basePath: dirname(__DIR__))
             CheckMaintenanceMode::class,
         ]);
 
-        // // 3. إعداد الـ Proxies
-        // $middleware->trustProxies(at: '*');
+        // 3. إعداد الـ Proxies
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
