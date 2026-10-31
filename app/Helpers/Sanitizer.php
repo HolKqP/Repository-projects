@@ -45,7 +45,7 @@ class Sanitizer
 
         // 2. التنظيف الأمني عبر HTMLPurifier
         $config = HTMLPurifier_Config::createDefault();
-
+        $config->set('Cache.DefinitionImpl', null);
         // الوسوم المسموحة فقط
         $config->set('HTML.Allowed', 'p[dir],div[dir|class],span[dir|class|style],b,strong,i,em,u,s,strike,a[href|target|rel],ul,ol,li[dir|data-list],br,img[src|alt|width|height|class],code,pre[class],h1,h2,h3,blockquote');
 
